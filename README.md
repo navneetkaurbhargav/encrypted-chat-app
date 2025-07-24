@@ -7,7 +7,7 @@ A secure, encrypted chat application featuring Certificate Authority (CA) valida
 - **🏛️ Certificate Authority (CA) System**: Mock CA that issues and validates certificates
 - **🔐 End-to-End Encryption**: RSA key exchange + AES-256 symmetric encryption
 - **✍️ Digital Signatures**: Message authentication using PKCS#1 v1.5 signatures
-- **🖥️ GUI Interface**: User-friendly Tkinter-based client and server applications
+- **🖥️ GUI Interface**: User-friendly Tkinter-based applications
 - **📋 Certificate Management**: Automatic certificate issuance, validation, and registry
 - **🔍 Real-time Validation**: Live certificate and signature verification
 - **💾 Persistent Storage**: Certificate registry and CA credentials saved to disk
@@ -26,8 +26,8 @@ A secure, encrypted chat application featuring Certificate Authority (CA) valida
 
 ### Security Flow
 
-1. **Certificate Issuance**: CA generates and signs certificates for server and clients
-2. **Certificate Exchange**: Server and client exchange certificates during handshake
+1. **Certificate Issuance**: CA generates and signs certificates for both the hosts that are communicating
+2. **Certificate Exchange**: Both the hosts exchange certificates during handshake
 3. **Certificate Validation**: Both parties validate certificates against CA
 4. **Key Exchange**: RSA public key exchange for AES key distribution
 5. **Secure Communication**: AES-encrypted messages with RSA digital signatures
@@ -56,14 +56,14 @@ A secure, encrypted chat application featuring Certificate Authority (CA) valida
 
 ### Running the Application
 
-1. **Start the Server**:
+1. **Start the Host A**:
    \`\`\`bash
    python hostA.py
    \`\`\`
    - Click "Start Host A" in the GUI
    - Default: `127.0.0.1:12000`
 
-2. **Start the Client**:
+2. **Start the Host B**:
    \`\`\`bash
    python hostB.py
    \`\`\`
@@ -122,7 +122,7 @@ secure-chat-app/
 ### host A Operations
 
 ```python
-# Server automatically:
+# Host A automatically:
 # 1. Gets certificate from CA
 # 2. Starts listening for connections
 # 3. Validates host B certificates
