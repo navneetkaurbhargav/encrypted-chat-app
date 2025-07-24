@@ -14,7 +14,7 @@ A secure, encrypted chat application featuring Certificate Authority (CA) valida
 
 ## 🏗️ Architecture
 
-\`\`\`text
+```text
 ┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
 │   CA Authority  │    │     Host A      │    │     Host B      │
 │                 │    │                 │    │                 │
@@ -22,7 +22,7 @@ A secure, encrypted chat application featuring Certificate Authority (CA) valida
 │ • Validates     │    │ • Encrypts      │    │ • Encrypts      │
 │ • Signs         │    │ • Signs Msgs    │    │ • Signs Msgs    │
 └─────────────────┘    └─────────────────┘    └─────────────────┘
-\`\`\`
+```
 
 ### Security Flow
 
@@ -42,38 +42,38 @@ A secure, encrypted chat application featuring Certificate Authority (CA) valida
 ### Installation
 
 1. **Clone and setup**:
-   \`\`\`bash
+   ```bash
    git clone <repository-url>
    cd secure-chat-app
    chmod +x setup.sh
    ./setup.sh
-   \`\`\`
+   ```
 
 2. **Activate virtual environment**:
-   \`\`\`bash
+   ```bash
    source venv/bin/activate
-   \`\`\`
+   ```
 
 ### Running the Application
 
 1. **Start the Host A**:
-   \`\`\`bash
+   ```bash
    python hostA.py
-   \`\`\`
+   ```
    - Click "Start Host A" in the GUI
    - Default: `127.0.0.1:12000`
 
 2. **Start the Host B**:
-   \`\`\`bash
+   ```bash
    python hostB.py
-   \`\`\`
+   ```
    - Enter username
    - Click "Connect"
    - Start chatting securely!
 
 ## 📁 Project Structure
 
-\`\`\`text
+```text
 secure-chat-app/
 ├── README.md              # This file
 ├── setup.sh               # Setup script
@@ -87,7 +87,7 @@ secure-chat-app/
 │   ├── cert_registry.json # Certificate registry
 │   └── *.pem              # Issued certificates
 └── venv/                  # Virtual environment (auto-created)
-\`\`\`
+```
 
 ## 🔧 Technical Details
 
