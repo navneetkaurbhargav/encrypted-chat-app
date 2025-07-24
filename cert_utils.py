@@ -67,7 +67,7 @@ class CA_Authority:
         ).not_valid_after(
             datetime.datetime.utcnow() + datetime.timedelta(days=365)
         ).add_extension(
-            x509.BasicConstraints(ca=True, path_length=0), critical=True,
+            x509.BasicConstraints(ca=True, path_length=0), critical=False,
         ).add_extension(
             x509.KeyUsage(
                 key_cert_sign=True,
