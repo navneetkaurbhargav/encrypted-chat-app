@@ -39,7 +39,7 @@ class SecureChatServer:
         self.setup_gui()
     
     def generate_server_credentials(self):
-        """Generate Host A RSA keys and get certificate from CA"""
+        """Generate Host A RSA Keys and get Certificate from CA"""
         # Generate RSA keys for encryption
         key = RSA.generate(2048)
         self.server_private_key = key
