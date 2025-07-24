@@ -14,7 +14,7 @@ A secure, encrypted chat application featuring Certificate Authority (CA) valida
 
 ## 🏗️ Architecture
 
-\`\`\`
+\`\`\`text
 ┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
 │   CA Authority  │    │     Host A      │    │     Host B      │
 │                 │    │                 │    │                 │
@@ -73,7 +73,7 @@ A secure, encrypted chat application featuring Certificate Authority (CA) valida
 
 ## 📁 Project Structure
 
-\`\`\`
+\`\`\`text
 secure-chat-app/
 ├── README.md              # This file
 ├── setup.sh               # Setup script
