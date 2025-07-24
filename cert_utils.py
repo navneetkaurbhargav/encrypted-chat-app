@@ -22,6 +22,14 @@ class CA_Authority:
         ca_key_path = 'certs/ca_private_key.pem'
         registry_path = 'certs/cert_registry.json'
 
+    def generate_ca_certificate(self):
+        """Generate CA certificate and private key"""
+        # Generate CA private key
+        self.ca_private_key = rsa.generate_private_key(
+            public_exponent=65537,
+            key_size=2048, backend = default_backend()
+        )    
+
         # Load existing CA or create new one
         if os.path.exists(ca_cert_path) and os.path.exists(ca_key_path):
             self.load_ca_from_files(ca_cert_path, ca_key_path)
@@ -37,15 +45,7 @@ class CA_Authority:
         # Verify CA is properly initialized
         if self.ca_cert is None or self.ca_private_key is None:
             raise Exception("Failed to initialize CA Authority - certificate or private key is None")
-    
 
-    def generate_ca_certificate(self):
-        """Generate CA certificate and private key"""
-        # Generate CA private key
-        self.ca_private_key = rsa.generate_private_key(
-            public_exponent=65537,
-            key_size=2048, backend = default_backend()
-        )
         
         # Create CA certificate
         subject = issuer = x509.Name([
