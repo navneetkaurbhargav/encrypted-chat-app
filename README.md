@@ -16,7 +16,7 @@ A secure, encrypted chat application featuring Certificate Authority (CA) valida
 
 \`\`\`
 ┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│   CA Authority  │    │     Server      │    │     Client      │
+│   CA Authority  │    │     Host A      │    │     Host B      │
 │                 │    │                 │    │                 │
 │ • Issues Certs  │◄──►│ • Validates     │◄──►│ • Validates     │
 │ • Validates     │    │ • Encrypts      │    │ • Encrypts      │
@@ -58,14 +58,14 @@ A secure, encrypted chat application featuring Certificate Authority (CA) valida
 
 1. **Start the Server**:
    \`\`\`bash
-   python server.py
+   python hostA.py
    \`\`\`
-   - Click "Start Server" in the GUI
+   - Click "Start Host A" in the GUI
    - Default: `127.0.0.1:12000`
 
 2. **Start the Client**:
    \`\`\`bash
-   python client.py
+   python hostB.py
    \`\`\`
    - Enter username
    - Click "Connect"
@@ -76,17 +76,17 @@ A secure, encrypted chat application featuring Certificate Authority (CA) valida
 \`\`\`
 secure-chat-app/
 ├── README.md              # This file
-├── setup.sh              # Setup script
-├── requirements.txt      # Python dependencies
-├── server.py            # Server application
-├── client.py            # Client application
-├── cert_utils.py        # CA Authority implementation
-├── certs/               # Certificate storage (auto-created)
-│   ├── ca_cert.pem      # CA certificate
+├── setup.sh               # Setup script
+├── requirements.txt       # Python dependencies
+├── hostA.py               # host A application
+├── hostB.py               # host B application
+├── cert_utils.py          # CA Authority implementation
+├── certs/                 # Certificate storage (auto-created)
+│   ├── ca_cert.pem        # CA certificate
 │   ├── ca_private_key.pem # CA private key
 │   ├── cert_registry.json # Certificate registry
-│   └── *.pem            # Issued certificates
-└── venv/                # Virtual environment (auto-created)
+│   └── *.pem              # Issued certificates
+└── venv/                  # Virtual environment (auto-created)
 \`\`\`
 
 ## 🔧 Technical Details
@@ -106,7 +106,6 @@ secure-chat-app/
 - **cryptography**: Certificate management and X.509 operations
 - **pycryptodome**: RSA encryption/decryption and digital signatures
 - **tkinter**: GUI framework
-- **threading**: Concurrent client handling
 - **json**: Certificate registry storage
 
 ### Security Features
@@ -120,12 +119,14 @@ secure-chat-app/
 
 ## 🎯 Usage Examples
 
-### Server Operations
+### host A Operations
 
 ```python
 # Server automatically:
 # 1. Gets certificate from CA
 # 2. Starts listening for connections
-# 3. Validates client certificates
+# 3. Validates host B certificates
 # 4. Establishes encrypted channels
 # 5. Verifies message signatures
+
+### **Simmilary host B start listening to the connection and communicate as mentioned above **
