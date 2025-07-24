@@ -7,27 +7,27 @@ A secure, encrypted chat application featuring Certificate Authority (CA) valida
 - **🏛️ Certificate Authority (CA) System**: Mock CA that issues and validates certificates
 - **🔐 End-to-End Encryption**: RSA key exchange + AES-256 symmetric encryption
 - **✍️ Digital Signatures**: Message authentication using PKCS#1 v1.5 signatures
-- **🖥️ GUI Interface**: User-friendly Tkinter-based client and server applications
+- **🖥️ GUI Interface**: User-friendly Tkinter-based applications
 - **📋 Certificate Management**: Automatic certificate issuance, validation, and registry
 - **🔍 Real-time Validation**: Live certificate and signature verification
 - **💾 Persistent Storage**: Certificate registry and CA credentials saved to disk
 
 ## 🏗️ Architecture
 
-\`\`\`
+```text
 ┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│   CA Authority  │    │     Server      │    │     Client      │
+│   CA Authority  │    │     Host A      │    │     Host B      │
 │                 │    │                 │    │                 │
 │ • Issues Certs  │◄──►│ • Validates     │◄──►│ • Validates     │
 │ • Validates     │    │ • Encrypts      │    │ • Encrypts      │
 │ • Signs         │    │ • Signs Msgs    │    │ • Signs Msgs    │
 └─────────────────┘    └─────────────────┘    └─────────────────┘
-\`\`\`
+```
 
 ### Security Flow
 
-1. **Certificate Issuance**: CA generates and signs certificates for server and clients
-2. **Certificate Exchange**: Server and client exchange certificates during handshake
+1. **Certificate Issuance**: CA generates and signs certificates for both the hosts that are communicating
+2. **Certificate Exchange**: Both the hosts exchange certificates during handshake
 3. **Certificate Validation**: Both parties validate certificates against CA
 4. **Key Exchange**: RSA public key exchange for AES key distribution
 5. **Secure Communication**: AES-encrypted messages with RSA digital signatures
@@ -42,52 +42,52 @@ A secure, encrypted chat application featuring Certificate Authority (CA) valida
 ### Installation
 
 1. **Clone and setup**:
-   \`\`\`bash
+   ```bash
    git clone <repository-url>
    cd secure-chat-app
    chmod +x setup.sh
    ./setup.sh
-   \`\`\`
+   ```
 
 2. **Activate virtual environment**:
-   \`\`\`bash
+   ```bash
    source venv/bin/activate
-   \`\`\`
+   ```
 
 ### Running the Application
 
-1. **Start the Server**:
-   \`\`\`bash
-   python server.py
-   \`\`\`
-   - Click "Start Server" in the GUI
+1. **Start the Host A**:
+   ```bash
+   python hostA.py
+   ```
+   - Click "Start Host A" in the GUI
    - Default: `127.0.0.1:12000`
 
-2. **Start the Client**:
-   \`\`\`bash
-   python client.py
-   \`\`\`
+2. **Start the Host B**:
+   ```bash
+   python hostB.py
+   ```
    - Enter username
    - Click "Connect"
    - Start chatting securely!
 
 ## 📁 Project Structure
 
-\`\`\`
+```text
 secure-chat-app/
 ├── README.md              # This file
-├── setup.sh              # Setup script
-├── requirements.txt      # Python dependencies
-├── server.py            # Server application
-├── client.py            # Client application
-├── cert_utils.py        # CA Authority implementation
-├── certs/               # Certificate storage (auto-created)
-│   ├── ca_cert.pem      # CA certificate
+├── setup.sh               # Setup script
+├── requirements.txt       # Python dependencies
+├── hostA.py               # host A application
+├── hostB.py               # host B application
+├── cert_utils.py          # CA Authority implementation
+├── certs/                 # Certificate storage (auto-created)
+│   ├── ca_cert.pem        # CA certificate
 │   ├── ca_private_key.pem # CA private key
 │   ├── cert_registry.json # Certificate registry
-│   └── *.pem            # Issued certificates
-└── venv/                # Virtual environment (auto-created)
-\`\`\`
+│   └── *.pem              # Issued certificates
+└── venv/                  # Virtual environment (auto-created)
+```
 
 ## 🔧 Technical Details
 
@@ -106,7 +106,6 @@ secure-chat-app/
 - **cryptography**: Certificate management and X.509 operations
 - **pycryptodome**: RSA encryption/decryption and digital signatures
 - **tkinter**: GUI framework
-- **threading**: Concurrent client handling
 - **json**: Certificate registry storage
 
 ### Security Features
@@ -120,12 +119,14 @@ secure-chat-app/
 
 ## 🎯 Usage Examples
 
-### Server Operations
+### host A Operations
 
 ```python
-# Server automatically:
+# Host A automatically:
 # 1. Gets certificate from CA
 # 2. Starts listening for connections
-# 3. Validates client certificates
+# 3. Validates host B certificates
 # 4. Establishes encrypted channels
 # 5. Verifies message signatures
+
+### **Simmilary host B start listening to the connection and communicate as mentioned above **
