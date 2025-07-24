@@ -67,7 +67,7 @@ class CA_Authority:
         ).not_valid_after(
             datetime.datetime.utcnow() + datetime.timedelta(days=365)
         ).add_extension(
-            x509.BasicConstraints(ca=True, path_length=0), critical=False,
+            x509.BasicConstraints(ca=True, path_length=0), critical=True,
         ).add_extension(
             x509.KeyUsage(
                 key_cert_sign=True,
@@ -83,7 +83,7 @@ class CA_Authority:
         ).sign(self.ca_private_key, hashes.SHA256(), default_backend())
     
     def issue_certificate(self, common_name, cert_type="client"):
-        """Issue a certificate signed by the CA"""
+        """Create a CA-signed digital certificate"""
         # Generate private key for the certificate
         private_key = rsa.generate_private_key(
             public_exponent=65537,
