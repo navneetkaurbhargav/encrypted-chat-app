@@ -8,7 +8,7 @@ from cryptography.hazmat.backends import default_backend
 import json
 
 class CA_Authority:
-    """Mock Certificate Authority for validating certificates and signatures"""
+    """Mock Certificate Authority for validating certificates and digital signatures"""
     
     def __init__(self):
         self.ca_private_key = None
